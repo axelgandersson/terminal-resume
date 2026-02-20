@@ -6,55 +6,62 @@
 
 @layer base {
   :root {
-    /* Terminal color palette */
-    --background: 0 0% 5%;
-    --foreground: 120 100% 75%;
+    /* Terminal color palette — classic Linux style */
+    --background: 220 16% 8%;
+    --foreground: 210 20% 88%;
 
-    --card: 0 0% 7%;
-    --card-foreground: 120 100% 75%;
+    --card: 220 16% 10%;
+    --card-foreground: 210 20% 88%;
 
-    --popover: 0 0% 7%;
-    --popover-foreground: 120 100% 75%;
+    --popover: 220 16% 10%;
+    --popover-foreground: 210 20% 88%;
 
-    --primary: 120 100% 60%;
-    --primary-foreground: 0 0% 5%;
+    /* Primary = user color (soft sky blue) */
+    --primary: 207 82% 66%;
+    --primary-foreground: 220 16% 8%;
 
-    --secondary: 0 0% 12%;
-    --secondary-foreground: 120 80% 65%;
+    --secondary: 220 16% 15%;
+    --secondary-foreground: 210 15% 70%;
 
-    --muted: 0 0% 10%;
-    --muted-foreground: 120 40% 45%;
+    --muted: 220 16% 12%;
+    --muted-foreground: 210 10% 50%;
 
-    --accent: 45 100% 60%;
-    --accent-foreground: 0 0% 5%;
+    /* Accent = host color (warm amber-orange) */
+    --accent: 32 90% 60%;
+    --accent-foreground: 220 16% 8%;
 
-    --destructive: 0 80% 55%;
+    --destructive: 0 72% 58%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 120 30% 18%;
-    --input: 0 0% 10%;
-    --ring: 120 100% 60%;
+    --border: 220 16% 20%;
+    --input: 220 16% 12%;
+    --ring: 207 82% 66%;
 
     --radius: 0.25rem;
 
     /* Terminal specific */
-    --terminal-green: 120 100% 60%;
-    --terminal-green-dim: 120 80% 45%;
-    --terminal-amber: 45 100% 60%;
-    --terminal-cyan: 180 100% 60%;
-    --terminal-red: 0 80% 60%;
-    --terminal-bg: 0 0% 4%;
+    --terminal-green: 207 82% 66%;
+    --terminal-green-dim: 207 60% 45%;
+    --terminal-amber: 32 90% 60%;
+    --terminal-cyan: 186 72% 62%;
+    --terminal-red: 0 72% 58%;
+    --terminal-bg: 220 16% 6%;
     --terminal-scanline: 0 0% 0%;
-    --terminal-glow: 120 100% 50%;
+    --terminal-glow: 207 82% 66%;
 
-    --sidebar-background: 0 0% 5%;
-    --sidebar-foreground: 120 100% 75%;
-    --sidebar-primary: 120 100% 60%;
-    --sidebar-primary-foreground: 0 0% 5%;
-    --sidebar-accent: 0 0% 12%;
-    --sidebar-accent-foreground: 120 80% 65%;
-    --sidebar-border: 120 30% 18%;
-    --sidebar-ring: 120 100% 60%;
+    /* Prompt colors */
+    --prompt-user: 207 82% 66%;
+    --prompt-host: 32 90% 60%;
+    --prompt-path: 186 72% 62%;
+
+    --sidebar-background: 220 16% 8%;
+    --sidebar-foreground: 210 20% 88%;
+    --sidebar-primary: 207 82% 66%;
+    --sidebar-primary-foreground: 220 16% 8%;
+    --sidebar-accent: 220 16% 15%;
+    --sidebar-accent-foreground: 210 15% 70%;
+    --sidebar-border: 220 16% 20%;
+    --sidebar-ring: 207 82% 66%;
   }
 }
 
@@ -118,18 +125,18 @@
 
 /* Text glow effects */
 .text-glow {
-  text-shadow: 0 0 8px hsl(var(--terminal-green) / 0.8),
-               0 0 16px hsl(var(--terminal-green) / 0.4);
+  text-shadow: 0 0 8px hsl(var(--terminal-green) / 0.7),
+               0 0 16px hsl(var(--terminal-green) / 0.3);
 }
 
 .text-glow-amber {
-  text-shadow: 0 0 8px hsl(var(--terminal-amber) / 0.8),
-               0 0 16px hsl(var(--terminal-amber) / 0.4);
+  text-shadow: 0 0 8px hsl(var(--terminal-amber) / 0.7),
+               0 0 16px hsl(var(--terminal-amber) / 0.3);
 }
 
 .text-glow-cyan {
-  text-shadow: 0 0 8px hsl(var(--terminal-cyan) / 0.8),
-               0 0 16px hsl(var(--terminal-cyan) / 0.4);
+  text-shadow: 0 0 8px hsl(var(--terminal-cyan) / 0.7),
+               0 0 16px hsl(var(--terminal-cyan) / 0.3);
 }
 
 /* Typing animation */
