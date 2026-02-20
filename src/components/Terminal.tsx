@@ -5,7 +5,6 @@ import { resumeData } from "@/data/resumeData";
 
 const PROMPT_USER = resumeData.name.toLowerCase().replace(" ", "");
 const PROMPT_HOST = "resume";
-const BOOT_DELAY_MS = 40;
 
 const bootLines = [
   { text: "BIOS v2.0.26 — Press DEL to enter setup", delay: 0 },
@@ -92,7 +91,6 @@ const Terminal: React.FC = () => {
 
     const cmdLine = input;
 
-    // Add the command to output
     setOutput((prev) => [
       ...prev,
       {
@@ -102,7 +100,6 @@ const Terminal: React.FC = () => {
       },
     ]);
 
-    // Process command
     const result = processCommand(cmdLine);
     if (result === "clear") {
       setOutput([]);
@@ -110,7 +107,6 @@ const Terminal: React.FC = () => {
       setOutput((prev) => [...prev, ...result]);
     }
 
-    // Update history
     if (cmdLine.trim()) {
       setHistory((prev) => [cmdLine, ...prev.slice(0, 99)]);
     }
@@ -139,8 +135,8 @@ const Terminal: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[hsl(var(--terminal-bg))] flex items-center justify-center p-3 md:p-6">
-      <div className="w-full max-w-5xl h-[calc(100vh-1.5rem)] md:h-[calc(100vh-3rem)] flex flex-col border border-border rounded-sm overflow-hidden scanlines crt-vignette terminal-flicker shadow-[0_0_40px_hsl(var(--primary)/0.08)]">
+    <div className="h-screen w-screen bg-[hsl(var(--terminal-bg))] flex p-4 overflow-hidden">
+      <div className="flex-1 flex flex-col border border-border rounded-sm overflow-hidden scanlines crt-vignette terminal-flicker">
         {/* Title bar */}
         <div className="flex items-center gap-2 px-4 py-2 bg-[hsl(220_16%_10%)] border-b border-border shrink-0">
           <div className="flex gap-1.5">
@@ -181,17 +177,13 @@ const Terminal: React.FC = () => {
 
               {/* Input line */}
               <form onSubmit={handleSubmit} className="flex items-center mt-1 relative">
-                {/* user — colored blue */}
                 <span className="text-[hsl(var(--prompt-user))] text-glow shrink-0 select-none">
                   {PROMPT_USER}
                 </span>
-                {/* @ separator */}
                 <span className="text-muted-foreground shrink-0 select-none">@</span>
-                {/* host — colored amber */}
                 <span className="text-[hsl(var(--prompt-host))] text-glow-amber shrink-0 select-none">
                   {PROMPT_HOST}
                 </span>
-                {/* path */}
                 <span className="text-[hsl(var(--prompt-path))] text-glow-cyan shrink-0 select-none">:~</span>
                 <span className="text-foreground shrink-0 select-none">$&nbsp;</span>
 
@@ -244,7 +236,6 @@ const Terminal: React.FC = () => {
       </div>
     </div>
   );
-
 };
 
 export default Terminal;
