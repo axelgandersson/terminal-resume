@@ -19,6 +19,14 @@ export default {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        terminal: {
+          green: "hsl(var(--terminal-green))",
+          "green-dim": "hsl(var(--terminal-green-dim))",
+          amber: "hsl(var(--terminal-amber))",
+          cyan: "hsl(var(--terminal-cyan))",
+          red: "hsl(var(--terminal-red))",
+          bg: "hsl(var(--terminal-bg))",
+        },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
