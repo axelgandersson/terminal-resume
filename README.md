@@ -57,21 +57,21 @@ The application will be available at `http://localhost:8080`
 
 Type these commands in the terminal:
 
-| Command            | Description                    |
-| ------------------ | ------------------------------ |
-| `help`             | Display all available commands |
-| `whoami` / `about` | Personal introduction          |
-| `experience`       | Work history and roles         |
-| `education`        | Academic background            |
-| `skills`           | Technical skill set            |
-| `links`            | Social profiles and websites   |
-| `contact`          | Contact information            |
-| `ls`               | List all resume sections       |
-| `banner`           | Show ASCII banner              |
-| `date`             | Current timestamp              |
-| `uname`            | System information             |
-| `clear`            | Clear the terminal             |
-| `echo <text>`      | Echo text back                 |
+| Command       | Description                    |
+| ------------- | ------------------------------ |
+| `help`        | Display all available commands |
+| `about`       | Personal introduction          |
+| `experience`  | Work history and roles         |
+| `education`   | Academic background            |
+| `skills`      | Technical skill set            |
+| `links`       | Social profiles and websites   |
+| `contact`     | Contact information            |
+| `ls`          | List all resume sections       |
+| `banner`      | Show ASCII banner              |
+| `date`        | Current timestamp              |
+| `uname`       | System information             |
+| `clear`       | Clear the terminal             |
+| `echo <text>` | Echo text back                 |
 
 ### Hidden Commands 🤫
 
