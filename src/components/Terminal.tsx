@@ -139,105 +139,112 @@ const Terminal: React.FC = () => {
   };
 
   return (
-    <div
-      className="min-h-screen w-full bg-[hsl(var(--terminal-bg))] scanlines crt-vignette terminal-flicker flex flex-col"
-      onClick={focusInput}
-    >
-      {/* Title bar */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-[hsl(0_0%_8%)] border-b border-border shrink-0">
-        <div className="flex gap-1.5">
-          <div className="w-3 h-3 rounded-full bg-[hsl(0_80%_55%)] opacity-80" />
-          <div className="w-3 h-3 rounded-full bg-[hsl(45_90%_50%)] opacity-80" />
-          <div className="w-3 h-3 rounded-full bg-[hsl(120_60%_45%)] opacity-80" />
-        </div>
-        <span className="flex-1 text-center text-xs text-muted-foreground tracking-widest">
-          {PROMPT_USER}@{PROMPT_HOST}: ~
-        </span>
-      </div>
-
-      {/* Terminal body */}
-      <div className="flex-1 p-4 md:p-6 overflow-y-auto font-mono text-sm">
-        {booting ? (
-          <div className="space-y-0.5">
-            {bootText.map((t, i) => (
-              <div
-                key={i}
-                className={`text-sm leading-relaxed line-appear ${
-                  t.startsWith("[ OK ]")
-                    ? "text-primary text-glow"
-                    : t === ""
-                    ? "opacity-0 select-none"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {t || "\u00A0"}
-              </div>
-            ))}
-            {/* Booting cursor */}
-            <div className="text-muted-foreground text-sm">
-              <span className="cursor-blink text-primary text-glow">█</span>
-            </div>
+    <div className="min-h-screen w-full bg-[hsl(var(--terminal-bg))] flex items-center justify-center p-3 md:p-6">
+      <div className="w-full max-w-5xl h-[calc(100vh-1.5rem)] md:h-[calc(100vh-3rem)] flex flex-col border border-border rounded-sm overflow-hidden scanlines crt-vignette terminal-flicker shadow-[0_0_40px_hsl(var(--primary)/0.08)]">
+        {/* Title bar */}
+        <div className="flex items-center gap-2 px-4 py-2 bg-[hsl(220_16%_10%)] border-b border-border shrink-0">
+          <div className="flex gap-1.5">
+            <div className="w-3 h-3 rounded-full bg-destructive opacity-80" />
+            <div className="w-3 h-3 rounded-full bg-accent opacity-80" />
+            <div className="w-3 h-3 rounded-full bg-[hsl(120_50%_45%)] opacity-80" />
           </div>
-        ) : (
-          <>
-            <TerminalOutput lines={output} />
+          <span className="flex-1 text-center text-xs text-muted-foreground tracking-widest">
+            {PROMPT_USER}@{PROMPT_HOST}: ~
+          </span>
+        </div>
 
-            {/* Input line */}
-            <form onSubmit={handleSubmit} className="flex items-center mt-1 relative">
-              <span className="text-primary text-glow shrink-0 mr-1 select-none">
-                {PROMPT_USER}@{PROMPT_HOST}
-              </span>
-              <span className="text-muted-foreground shrink-0 select-none">:~$&nbsp;</span>
-              <div className="relative flex-1 flex items-center">
-                {/* Ghost suggestion text */}
-                {suggestion && (
+        {/* Terminal body */}
+        <div className="flex-1 p-4 md:p-6 overflow-y-auto font-mono text-sm bg-[hsl(var(--terminal-bg))]" onClick={focusInput}>
+          {booting ? (
+            <div className="space-y-0.5">
+              {bootText.map((t, i) => (
+                <div
+                  key={i}
+                  className={`text-sm leading-relaxed line-appear ${
+                    t.startsWith("[ OK ]")
+                      ? "text-primary text-glow"
+                      : t === ""
+                      ? "opacity-0 select-none"
+                      : "text-muted-foreground"
+                  }`}
+                >
+                  {t || "\u00A0"}
+                </div>
+              ))}
+              <div className="text-muted-foreground text-sm">
+                <span className="cursor-blink text-primary text-glow">█</span>
+              </div>
+            </div>
+          ) : (
+            <>
+              <TerminalOutput lines={output} />
+
+              {/* Input line */}
+              <form onSubmit={handleSubmit} className="flex items-center mt-1 relative">
+                {/* user — colored blue */}
+                <span className="text-[hsl(var(--prompt-user))] text-glow shrink-0 select-none">
+                  {PROMPT_USER}
+                </span>
+                {/* @ separator */}
+                <span className="text-muted-foreground shrink-0 select-none">@</span>
+                {/* host — colored amber */}
+                <span className="text-[hsl(var(--prompt-host))] text-glow-amber shrink-0 select-none">
+                  {PROMPT_HOST}
+                </span>
+                {/* path */}
+                <span className="text-[hsl(var(--prompt-path))] text-glow-cyan shrink-0 select-none">:~</span>
+                <span className="text-foreground shrink-0 select-none">$&nbsp;</span>
+
+                <div className="relative flex-1 flex items-center">
+                  {suggestion && (
+                    <span
+                      className="absolute left-0 top-0 text-muted-foreground opacity-30 pointer-events-none select-none"
+                      aria-hidden
+                    >
+                      {suggestion}
+                    </span>
+                  )}
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    value={input}
+                    onChange={(e) => handleInputChange(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    className="bg-transparent text-foreground caret-transparent outline-none border-none w-full font-mono text-sm"
+                    autoFocus
+                    autoComplete="off"
+                    autoCapitalize="off"
+                    spellCheck={false}
+                    aria-label="Terminal input"
+                  />
                   <span
-                    className="absolute left-0 top-0 text-muted-foreground opacity-30 pointer-events-none select-none"
+                    className="cursor-blink text-[hsl(var(--prompt-user))] text-glow select-none pointer-events-none"
+                    style={{ marginLeft: `${input.length}ch`, position: "absolute", left: 0 }}
                     aria-hidden
                   >
-                    {suggestion}
+                    █
                   </span>
-                )}
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={input}
-                  onChange={(e) => handleInputChange(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  className="bg-transparent text-foreground caret-transparent outline-none border-none w-full font-mono text-sm"
-                  autoFocus
-                  autoComplete="off"
-                  autoCapitalize="off"
-                  spellCheck={false}
-                  aria-label="Terminal input"
-                />
-                {/* Blinking cursor block */}
-                <span
-                  className="cursor-blink text-primary text-glow select-none pointer-events-none"
-                  style={{ marginLeft: `${input.length}ch`, position: "absolute", left: 0 }}
-                  aria-hidden
-                >
-                  █
-                </span>
-              </div>
-            </form>
-          </>
-        )}
-        <div ref={bottomRef} />
-      </div>
-
-      {/* Status bar */}
-      {!booting && (
-        <div className="flex items-center justify-between px-4 py-1 bg-primary text-primary-foreground text-xs shrink-0">
-          <span className="font-bold tracking-wider">NORMAL</span>
-          <span className="opacity-70">
-            {PROMPT_USER}@{PROMPT_HOST} — ResumeOS 2.0.26
-          </span>
-          <span className="opacity-70">TAB: autocomplete · ↑↓: history</span>
+                </div>
+              </form>
+            </>
+          )}
+          <div ref={bottomRef} />
         </div>
-      )}
+
+        {/* Status bar */}
+        {!booting && (
+          <div className="flex items-center justify-between px-4 py-1 bg-[hsl(220_16%_13%)] border-t border-border text-xs shrink-0">
+            <span className="text-[hsl(var(--prompt-user))] font-bold tracking-wider">NORMAL</span>
+            <span className="text-muted-foreground">
+              {PROMPT_USER}@{PROMPT_HOST} — ResumeOS 2.0.26
+            </span>
+            <span className="text-muted-foreground">TAB: autocomplete · ↑↓: history</span>
+          </div>
+        )}
+      </div>
     </div>
   );
+
 };
 
 export default Terminal;

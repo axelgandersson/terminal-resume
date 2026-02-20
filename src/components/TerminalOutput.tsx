@@ -8,13 +8,13 @@ interface TerminalOutputProps {
 
 const typeClass: Record<OutputLine["type"], string> = {
   normal: "text-foreground",
-  success: "text-primary text-glow",
+  success: "text-[hsl(var(--prompt-user))] text-glow",
   error: "text-destructive",
   accent: "text-accent text-glow-amber",
   dim: "text-muted-foreground",
   amber: "text-accent text-glow-amber",
   cyan: "text-[hsl(var(--terminal-cyan))] text-glow-cyan",
-  header: "text-primary text-glow font-bold tracking-widest",
+  header: "text-[hsl(var(--prompt-user))] text-glow font-bold tracking-widest",
   blank: "",
 };
 
