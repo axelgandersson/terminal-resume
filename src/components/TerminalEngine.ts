@@ -18,6 +18,18 @@ export type OutputLine = {
 let idCounter = 0;
 const mkId = () => `line-${++idCounter}`;
 
+/**
+ * Creates a new `OutputLine` object with a generated unique `id`, the provided `text`,
+ * and an optional `type` (defaulting to `"normal"`).
+ *
+ * This is a local helper function scoped to this module/file. Since it is not exported,
+ * it can only be used internally within `TerminalEngine.ts` and is not accessible from
+ * other modules.
+ *
+ * @param text - The display content for the output line.
+ * @param type - The line classification/style; defaults to `"normal"`.
+ * @returns A fully constructed `OutputLine` instance.
+ */
 const line = (
 	text: string,
 	type: OutputLine["type"] = "normal",
@@ -313,7 +325,7 @@ export function processCommand(input: string): OutputLine[] | "clear" {
 				blank(),
 				line("[ CONTACT ]", "header"),
 				blank(),
-				line(`  Email      →  ${resumeData.email}`, "cyan"),
+
 				...resumeData.links.map((l) =>
 					line(`  ${l.label.padEnd(10)} →  ${l.url}`, "cyan"),
 				),

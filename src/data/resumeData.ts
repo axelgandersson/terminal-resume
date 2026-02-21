@@ -57,15 +57,14 @@ export const resumeData = {
 			institution: "YH Borås",
 			degree: "FrontEndDev-React",
 			period: "2024-2026",
-			details: [""],
-		},
-		{
-			institution: "Hack The Box & TryHackMe",
-			degree: "Self-directed Cybersecurity Training",
-			period: "2025 — Ongoing",
 			details: [
-				"Top 1% global ranking on Hack The Box",
-				"CEH (Certified Ethical Hacker) — 2022",
+				"A two-year distance program focused on modern web development. ",
+				"The education emphasized React, JavaScript, HTML, and CSS, along with UX,",
+				"version control, security, Node.js, and databases. The program combined ",
+				"theoretical knowledge with practical application through real-world projects ",
+				"and workplace learning (LIA). This training prepared me to design and ",
+				"build responsive, user-centered web applications using contemporary development ",
+				"practices.",
 			],
 		},
 	],
@@ -86,15 +85,13 @@ export const resumeData = {
 	},
 
 	links: [
-		{ label: "GitHub", url: "https://github.com/alexmercer", icon: "gh" },
+		{ label: "GitHub", url: "https://github.com/axelgandersson", icon: "gh" },
 		{
 			label: "LinkedIn",
-			url: "https://linkedin.com/in/alexmercer",
+			url: "https://www.linkedin.com/in/axel-andersson-b72406312/",
 			icon: "li",
 		},
-		{ label: "Blog", url: "https://alexmercer.dev/blog", icon: "bl" },
-		{ label: "Email", url: "mailto:alex.mercer@dev.io", icon: "em" },
-		{ label: "Twitter / X", url: "https://x.com/alexmercer_dev", icon: "tw" },
+		{ label: "Email", url: "axelgandersson@gmail.com", icon: "em" },
 	],
 };
 
